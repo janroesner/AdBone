@@ -28,6 +28,7 @@ gem 'sqlite3'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'apirunner', '0.5.0'
+  gem 'sqlite3-ruby'
 end
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
 gem "cucumber-rails", :group => :test
