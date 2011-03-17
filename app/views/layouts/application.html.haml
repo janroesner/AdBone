@@ -2,9 +2,13 @@
 %html
   %head
     %title Adbone
-    = javascript_include_tag :all
-    = javascript_include_tag 'controllers/addresses'
-    = javascript_include_tag 'models/address'
+    = javascript_include_tag 'jquery'
+    = javascript_include_tag 'underscore'
+    = javascript_include_tag 'backbone'
+    = javascript_include_tag 'application'
+    = javascript_include_tag 'controllers/contacts'
+    = javascript_include_tag 'models/contact'
+    = javascript_include_tag 'views/contacts/index'
     = stylesheet_link_tag :all
     = csrf_meta_tag
   %body

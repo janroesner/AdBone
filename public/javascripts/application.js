@@ -1,8 +1,10 @@
-var App = {
-    Views: {},
+this.App = {
+    Views: {
+      Contacts: {}
+           },
     Controllers: {},
     init: function() {
-        new App.Controllers.Addresses();
+        new App.Controllers.Contacts();
         Backbone.history.start();
     }
 };
