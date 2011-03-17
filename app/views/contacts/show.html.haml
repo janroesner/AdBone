@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Firstname:
+  = @contact.firstname
+%p
+  %b Lastname:
+  = @contact.lastname
+%p
+  %b Address:
+  = @contact.address
+%p
+  %b Zipcode:
+  = @contact.zipcode
+%p
+  %b City:
+  = @contact.city
+%p
+  %b Country:
+  = @contact.country
+%p
+  %b Phone:
+  = @contact.phone
+%p
+  %b Twitter:
+  = @contact.twitter
+
+= link_to 'Edit', edit_contact_path(@contact)
+\|
+= link_to 'Back', contacts_path
