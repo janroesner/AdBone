@@ -60,15 +60,21 @@ class ContactsController < ApplicationController
 
   # PUT /contacts/1
   def update
-    @contact = Contact.find(params[:id])
-
-    respond_to do |format|
-      if @contact.update_attributes(params[:contact])
-        format.html { redirect_to(@contact, :notice => 'Contact was successfully updated.') }
-        format.json  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json { respond_with @contact, :status => :unprocessable_entity }
+    begin
+      @contact = Contact.find(params[:id])
+      respond_to do |format|
+        if @contact.update_attributes(params[:contact])
+          format.html { redirect_to(@contact, :notice => 'Contact was successfully updated.') }
+          format.json  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.json { respond_with @contact, :status => :unprocessable_entity }
+        end
+      end
+    rescue Exception => e
+      respond_to do |format|
+        format.html { raise e }
+        format.json { respond_with(nil, :status => 404) }
       end
     end
   end
