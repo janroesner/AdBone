@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Adbone
+    = javascript_include_tag :all
+    = javascript_include_tag 'controllers/addresses'
+    = javascript_include_tag 'models/address'
+    = stylesheet_link_tag :all
+    = csrf_meta_tag
+  %body
+    = yield

@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
   def show
     begin
       @contact = Contact.find params[:id]
-      respond_with @contact
+      respond_with ({:contact => @contact, :bla => 5}.to_json)
     rescue Exception => e
       respond_with nil, :status => :not_found
     end
