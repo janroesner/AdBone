@@ -1,4 +1,6 @@
 class Contact < ActiveRecord::Base
+
+  attr_accessible :firstname, :lastname, :address, :zipcode, :city, :country, :phone, :twitter
   validates_presence_of :firstname, :lastname
 
   def to_json(options = {})
