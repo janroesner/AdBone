@@ -3,8 +3,7 @@ class ContactsController < ApplicationController
   respond_to :json
 
   def index
-    @contacts = Contact.all
-    respond_with @contacts
+    respond_with Contact.all
   end
 
   def show
@@ -17,7 +16,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact = Contact.new(params[:contact])
+    @contact = Contact.new params[:contact]
     if @contact.save
       respond_with @contact, :status => :created, :location => @contact
     else
@@ -27,8 +26,8 @@ class ContactsController < ApplicationController
 
   def update
     begin
-      @contact = Contact.find(params[:id])
-      if @contact.update_attributes(params[:contact])
+      @contact = Contact.find params[:id]
+      if @contact.update_attributes params[:contact]
         head :ok
       else
         respond_with @contact, :status => :unprocessable_entity
@@ -40,7 +39,7 @@ class ContactsController < ApplicationController
 
   def destroy
     begin
-      @contact = Contact.find(params[:id])
+      @contact = Contact.find params[:id]
       @contact.destroy
       head :ok
     rescue Exception => e
