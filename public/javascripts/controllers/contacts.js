@@ -1,7 +1,7 @@
 App.Controllers.Contacts = Backbone.Controller.extend({
 
 routes: {
-          "contacts/:id": "edit",
+          "contacts/:id" : "edit",
           ""             : "index",
           "new"          : "newAdd"
         },
@@ -10,6 +10,7 @@ edit: function(id) {
         var contact = new Contact({ id: id });
         contact.fetch({
           success: function(model, resp) {
+                     console.log("model: " +id + " - " + (contact));
                      new App.Views.Contacts.Edit({ model: contact });
                    },
           error: function() {
@@ -32,6 +33,6 @@ index: function() {
        },
 
 newAdd: function() {
-          new App.Views.Edit({ model: new Contact() });
+          new App.Views.Contacts.Edit({ model: new Contact() });
         }
 });

@@ -1,7 +1,5 @@
 this.App = {
-    Views: {
-      Contacts: {}
-           },
+    Views: {},
     Controllers: {},
     init: function() {
         new App.Controllers.Contacts();

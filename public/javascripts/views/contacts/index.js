@@ -1,3 +1,4 @@
+App.Views.Contacts = App.Views.Contacts || {};
 App.Views.Contacts.Index = Backbone.View.extend({
     initialize: function() {
         this.contacts = this.options.contacts;
