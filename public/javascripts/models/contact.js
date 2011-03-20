@@ -11,10 +11,3 @@ var Contact = Backbone.Model.extend({
            this.view.remove();
          }
 });
-
-var Contacts = Backbone.Collection.extend({
-  url:   function() {
-           return this.document.url() + '/contacts';
-         }
-});
-

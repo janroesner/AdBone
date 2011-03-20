@@ -21,17 +21,16 @@ edit:    function(id) {
            });
          },
 
-index:   function() {
-           $.getJSON('/contacts', function(data) {
-             if(data) {
-               var contacts = _(data).map(function(i) { return new Contact(i); });
-               new App.Views.Contacts.Index({ contacts: contacts });
-             }
-             else {
-               new Error({ message: "Error loading contact." });
+index:  function() {
+           var contacts = new App.Collections.Contacts();
+           contacts.fetch({
+             success: function() {
+               new App.Views.Contacts.Index({ collection: contacts });
+             },
+             error: function() {
+               new Error({ message: "Error loading contacts." });
              }
            });
-           window.location.hash = '';
          },
 
 newAdd:  function() {
