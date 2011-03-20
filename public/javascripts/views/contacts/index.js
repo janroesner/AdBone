@@ -9,7 +9,7 @@ App.Views.Contacts.Index = Backbone.View.extend({
         if(this.contacts.length > 0) {
             var out = "<h3><a href='#new'>Create New</a></h3><ul>";
             _(this.contacts).each(function(item) {
-                out += "<li><a href='#contacts/" + item.id + "'>" + item.escape('firstname') + "</a></li>";
+                out += "<li><a href='#contacts/" + item.id + "'>" + item.escape('firstname') + "</a> - <a href='#contacts/destroy/" + item.id + "'>Delete</a></li>";
             });
             out += "</ul>";
         } else {
