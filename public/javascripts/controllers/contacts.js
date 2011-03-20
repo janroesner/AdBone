@@ -36,17 +36,5 @@ index:   function() {
 
 newAdd:  function() {
            new App.Views.Contacts.Edit({ model: new Contact() });
-         },
-
-destroy: function(id){
-         var contact = new Contact({ id: id});
-         contact.destroy({
-           success: function(model, resp){
-                      alert("Successfully deleted contact");
-                    },
-           error: function(model, resp){
-                    alert("Error while deleting contact");
-                  }
-         });
          }
 });
