@@ -12,8 +12,15 @@ App.Views.Contacts.Edit = Backbone.View.extend({
         var self = this;
         var msg = this.model.isNew() ? 'Successfully created!' : "Saved!";
 
-        this.model.save({ title: this.$('[name=title]').val(),
-                          body:  this.$('[name=body]').val()
+        this.model.save({
+                      firstname: this.$('[name=firstname]').val(),
+                      lastname:  this.$('[name=lastname]').val(),
+                      address:   this.$('[name=address]').val(),
+                      zipcode:   this.$('[name=zipcode]').val(),
+                      city:      this.$('[name=city]').val(),
+                      country:   this.$('[name=country]').val(),
+                      phone:     this.$('[name=phone]').val(),
+                      twitter:   this.$('[name=twitter]').val()
                         },
                         {
             success: function(model, resp) {
@@ -25,8 +32,8 @@ App.Views.Contacts.Edit = Backbone.View.extend({
 
                 Backbone.history.saveLocation('contacts/' + model.id);
             },
-            error: function() {
-                new App.Views.Error({message: "Saving the contact failed for some reason!"});
+            error: function(model, resp) {
+                new App.Views.Error({message: "Saving the contact failed: " + resp.responseText});
             }
         });
 
@@ -38,15 +45,35 @@ App.Views.Contacts.Edit = Backbone.View.extend({
         var out = '<form>';
         out += "<label for='firstname'>Firstname</label>";
         out += "<input name='firstname' type='text' value='" + (this.model.escape('firstname') || '') + "'/>";
+        out += "<br />";
 
         out += "<label for='lastname'>Lastname</label>";
         out += "<input name='lastname' type='text' value='" + (this.model.escape('lastname') || '') + "'/>";
+        out += "<br />";
 
         out += "<label for='address'>Address</label>";
         out += "<input name='address' type='text' value='" + (this.model.escape('address') || '') + "'/>";
+        out += "<br />";
 
-        out += "<label for='body'>Body</label>";
-        out += "<textarea name='body'>" + (this.model.escape('body') || '') + "</textarea>";
+        out += "<label for='zipcode'>Zipcode</label>";
+        out += "<input name='zipcode' type='text' value='" + (this.model.escape('zipcode') || '') + "'/>";
+        out += "<br />";
+
+        out += "<label for='city'>City</label>";
+        out += "<input name='city' type='text' value='" + (this.model.escape('city') || '') + "'/>";
+        out += "<br />";
+
+        out += "<label for='country'>Country</label>";
+        out += "<input name='country' type='text' value='" + (this.model.escape('country') || '') + "'/>";
+        out += "<br />";
+
+        out += "<label for='phone'>Phone</label>";
+        out += "<input name='phone' type='text' value='" + (this.model.escape('phone') || '') + "'/>";
+        out += "<br />";
+
+        out += "<label for='twitter'>Twitter</label>";
+        out += "<input name='twitter' type='text' value='" + (this.model.escape('twitter') || '') + "'/>";
+        out += "<br />";
 
         var submitText = this.model.isNew() ? 'Create' : 'Save';
 
