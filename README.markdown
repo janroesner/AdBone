@@ -6,7 +6,7 @@ AdBone is a simple Rails3 app powered by [backbone.js](http://documentcloud.gith
 Authors
 -------
 
-AdbOne was written by:
+AdBone was written by:
 
 [Jan Roesner](http://railspotting.de) mailto: <jan@roesner.it>
 
