@@ -24,7 +24,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact = Contact.new params[:contact]
+    @contact = Contact.new params.delete_if{ |p| ["controller","action"].include? p }
     if @contact.save
       respond_with @contact, :status => :created, :location => @contact
     else
@@ -34,7 +34,7 @@ class ContactsController < ApplicationController
 
   def update
     @contact = Contact.find params[:id]
-    @contact.update_attributes! params.delete_if{|p| ["controller", "action", "id"].include? p}
+    @contact.update_attributes! params.delete_if{ |p| ["controller", "action", "id"].include? p }
     respond_with @contact, status: :ok
   end
 
