@@ -3,14 +3,19 @@ App.Views.Contacts.Contact = Backbone.View.extend({
 
   events: {
     "click button.contact-destroy" : "clear",
-    "click .foo                    : "clear"
+    "click button#foo"             : "clear",
+    "foo"                          : "clear"
   },
 
   initialize: function(model){
                 // TODO: awkward
-                this.model = model;
+                // this.model = model;
                 this.contact = model.model;
                 this.render();
+                this.contact.view = this;
+                this.model.view = this;
+
+                _.extend(this, Backbone.Events);
               },
 
   render:     function(){
@@ -23,8 +28,8 @@ App.Views.Contacts.Contact = Backbone.View.extend({
               },
 
   clear:      function(){
-                console.log("Clear called for" + this.contact.get("firstname"));
-                // this.model.clear();
+                console.log("Clear called for " + this.contact.get("firstname"));
+                this.contact.clear();
               }
 
 });
