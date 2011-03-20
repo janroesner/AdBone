@@ -2,6 +2,14 @@ class ContactsController < ApplicationController
 
   respond_to :json
 
+  rescue_from ActiveRecord::RecordInvalid do
+    respond_with @contact, status: :unprocessable_entity
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do
+    respond_with @contact, status: :not_found
+  end
+
   def index
     respond_with Contact.all
   end
@@ -25,16 +33,9 @@ class ContactsController < ApplicationController
   end
 
   def update
-    begin
-      @contact = Contact.find params[:id]
-      if @contact.update_attributes params[:contact]
-        head :ok
-      else
-        respond_with @contact, :status => :unprocessable_entity
-      end
-    rescue Exception => e
-      respond_with nil, :status => :not_found
-    end
+    @contact = Contact.find params[:id]
+    @contact.update_attributes! params.delete_if{|p| ["controller", "action", "id"].include? p}
+    respond_with @contact, status: :ok
   end
 
   def destroy

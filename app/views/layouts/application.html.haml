@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Adbone
+    = javascript_include_tag 'jquery'
+    = javascript_include_tag 'jquery-dotimeout'
+    = javascript_include_tag 'underscore'
+    = javascript_include_tag 'backbone'
+    = javascript_include_tag 'application'
+    = javascript_include_tag 'controllers/contacts'
+    = javascript_include_tag 'models/contact'
+    = javascript_include_tag 'views/contacts/index'
+    = javascript_include_tag 'views/contacts/edit'
+    = javascript_include_tag 'views/notice'
+    = stylesheet_link_tag :all
+    = csrf_meta_tag
+  %body
+    = yield
