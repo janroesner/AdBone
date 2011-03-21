@@ -27,8 +27,8 @@ App.Views.Contacts.Contact = Backbone.View.extend({
 
   clear:      function(){
                 console.log("Clear called for " + this.contact.get("firstname"));
-                // this.contact.clear();
-                // this.remove();
+                this.contact.clear();
+                this.remove();
               }
 
 });
