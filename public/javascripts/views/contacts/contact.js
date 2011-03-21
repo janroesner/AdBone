@@ -10,8 +10,6 @@ App.Views.Contacts.Contact = Backbone.View.extend({
                 // this.model = model;
                 this.contact = model.model;
                 this.contact.view = this;
-                this.model.view = this;
-                _.extend(this, Backbone.Events);
                 this.render();
               },
 
@@ -26,9 +24,16 @@ App.Views.Contacts.Contact = Backbone.View.extend({
               },
 
   clear:      function(){
-                console.log("Clear called for " + this.contact.get("firstname"));
-                this.contact.clear();
-                this.remove();
+                // console.log("Clear called for " + this.contact.get("firstname"));
+                self = this;
+                this.contact.clear(function(success){
+                  if(success){
+                    msg = "Contact successfully deleted";
+                    new App.Views.Notice({ message: msg });
+                    self.remove();
+                  }else{
+                    new App.Views.Error({message: "Deleting the contact failed: " + resp.responseText});
+                  }
+                });
               }
-
 });

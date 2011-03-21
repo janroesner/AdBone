@@ -6,8 +6,14 @@ var Contact = Backbone.Model.extend({
            return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;
          },
 
-  clear: function(){
-           this.destroy();
-           this.view.remove();
+  clear: function(callback){
+           this.destroy({
+             success:  function(model, response){
+                         callback(true);
+                       },
+             error:    function(model, response){
+                         callback(false);
+                       }
+           });
          }
 });

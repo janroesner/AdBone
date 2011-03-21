@@ -15,12 +15,8 @@ class ContactsController < ApplicationController
   end
 
   def show
-    begin
-      @contact = Contact.find params[:id]
-      respond_with @contact
-    rescue Exception => e
-      respond_with nil, :status => :not_found
-    end
+    @contact = Contact.find params[:id]
+    respond_with @contact
   end
 
   def create
@@ -39,13 +35,9 @@ class ContactsController < ApplicationController
   end
 
   def destroy
-    begin
-      @contact = Contact.find params[:id]
-      @contact.destroy
-      head :ok
-    rescue Exception => e
-      respond_with nil, :status => :not_found
-    end
+    @contact = Contact.find params[:id]
+    @contact.destroy
+    respond_with nil, status: :ok
   end
 
 end
