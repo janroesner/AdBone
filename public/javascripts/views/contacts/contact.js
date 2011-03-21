@@ -2,20 +2,17 @@ App.Views.Contacts         = App.Views.Contacts || {};
 App.Views.Contacts.Contact = Backbone.View.extend({
 
   events: {
-    "click button.contact-destroy" : "clear",
-    "click button#foo"             : "clear",
-    "foo"                          : "clear"
+    "click span.contact-destroy" : "clear"
   },
 
   initialize: function(model){
                 // TODO: awkward
                 // this.model = model;
                 this.contact = model.model;
-                this.render();
                 this.contact.view = this;
                 this.model.view = this;
-
                 _.extend(this, Backbone.Events);
+                this.render();
               },
 
   render:     function(){
@@ -23,13 +20,15 @@ App.Views.Contacts.Contact = Backbone.View.extend({
                 out = "<li><a href='#contacts/" +
                       this.contact.id + "'>" +
                       this.contact.escape('firstname') +
-                      "</a> - <button class='contact-destroy'>Delete</a></button>";
-                $('#contacts').append(out);
+                      "</a></li>&nbsp;<span style='width=80px;height=80px;display=inline;' class='contact-destroy'>Delete</span>";
+                $(this.el).html(out);
+                $('#contacts').append(this.el);
               },
 
   clear:      function(){
                 console.log("Clear called for " + this.contact.get("firstname"));
-                this.contact.clear();
+                // this.contact.clear();
+                // this.remove();
               }
 
 });
