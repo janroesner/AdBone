@@ -1,7 +1,28 @@
 module ApplicationHelper
 
-  # returns all ich templates for given models
+  # determines which models to load templates for and load 'em
   def ich_templates *models
+    case models.size
+    when 1
+      case models.first.class.to_s
+      when "Hash"
+        templates_for *all_apps_models.delete_if{ |t| models.first[:except].include?(t) }
+      when "Symbol"
+        return templates_for models.first if not models.first == :all
+        templates_for *all_apps_models
+      end
+    else
+      templates_for *models
+    end
+  end
+
+  # returns a list of all models of that app, pluralized already
+  def all_apps_models
+    Dir['app/models/*.rb'].map{ |f| File.basename(f, '.*').pluralize.to_sym }
+  end
+
+  # returns all ich templates for given models
+  def templates_for *models
     templates = []
     basenames = []
     models.each do |model|
@@ -19,7 +40,7 @@ module ApplicationHelper
     templates.join.html_safe
   end
 
-  # wraps the given template string into a script whose id will be construvted from models name and template-file's basename
+  # wraps the given template string into a script whose id will be constructed from models name and template-file's basename
   def script_wrap string, modelname, templatename
     "<script id='#{modelname}_#{templatename}' type='text/html'>#{string}</script>"
   end
