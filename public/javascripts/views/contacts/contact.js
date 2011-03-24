@@ -11,7 +11,7 @@ App.Views.Contacts.Contact = Backbone.View.extend({
 
   render:     function(){
                 // console.log("Rendering: " + JSON.stringify(this.model));
-                $(this.el).html(ich.contacts_contact(this.model.attributes));
+                $(this.el).html(ich.contacts_show(this.model.attributes));
                 $('#contacts').append(this.el);
               },
 
