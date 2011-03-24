@@ -11,11 +11,7 @@ App.Views.Contacts.Contact = Backbone.View.extend({
 
   render:     function(){
                 // console.log("Rendering: " + JSON.stringify(this.model));
-                out = "<li><a href='#contacts/" +
-                      this.model.id + "'>" +
-                      this.model.escape('firstname') +
-                      "</a></li>&nbsp;<span class='contact-destroy'>Delete</span>";
-                $(this.el).html(out);
+                $(this.el).html(ich.contacts_contact(this.model.attributes));
                 $('#contacts').append(this.el);
               },
 
